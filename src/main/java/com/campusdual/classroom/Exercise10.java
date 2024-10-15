@@ -4,26 +4,50 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Exercise10 {
 
-    //TODO ↓
-    // Imprimir el color de las pelotas que salgan, hasta que salgan 2 de color azul
-    // El mensaje a imprimir es → La bola es de color: COLOR_BOLA
-    // COLOR_BOLA puede ser → rojo, azul, verde
     public static void main(String[] args) {
+        // Contador de bolas azules
+        int azulCount = 0;
 
+        // Bucle do-while para repetir hasta obtener dos bolas de color azul
+        do {
+            // Obtener el color de la bola usando el método getBall
+            String color = getBall();
+
+            // Imprimir el color de la bola
+            System.out.println("La bola es de color: " + color);
+
+            // Si el color es azul, incrementamos el contador de bolas azules
+            if (color.equals("azul")) {
+                azulCount++;
+            }
+
+            // Continuar hasta que se obtengan dos bolas de color azul
+        } while (azulCount < 1);
+
+        // Mensaje final cuando se obtienen dos bolas azules
+        System.out.println("Se han obtenido dos bolas de color azul.");
     }
 
-    //TODO ↓
-    // Un método que devuelva una cadena de texto con el color de una pelota (en minúscula). Dicho color se escogerá de
-    // manera aleatoria. Se empleará el método randomWithRange(int min, int max) para escoger un número aleatorio, que
-    // lo asociaremos al valor de un color de la siguiente manera:
-    // 1 → rojo
-    // 2 → azul
-    // 3 → verde
+    // Método que devuelve un color de bola basado en un número aleatorio
     public static String getBall() {
-        return null;
+        // Generar un número aleatorio entre 1 y 3
+        int bola = randomWithRange(1, 4);
+
+        // Asignar un color en función del número aleatorio
+        switch (bola) {
+            case 1:
+                return "rojo";
+            case 2:
+                return "azul";
+            case 3:
+                return "verde";
+            default:
+                return "desconocido"; // Este caso no debería ocurrir
+        }
     }
 
+    // Método para generar un número aleatorio en el rango [min, max)
     public static int randomWithRange(int min, int max) {
-        return ThreadLocalRandom.current().nextInt(min,max);
+        return ThreadLocalRandom.current().nextInt(min, max);
     }
 }
